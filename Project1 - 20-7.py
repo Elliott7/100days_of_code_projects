@@ -1,5 +1,5 @@
 """
-Band name generator.
+Project Number One - Band name generator.
 This is the first challenge from the 100 days of python bootcamp.
 Very basic program to recommend a band name based off of your hometown and pets name.
 """
