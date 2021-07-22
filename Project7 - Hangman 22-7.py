@@ -288,5 +288,6 @@ def main():
             print(f"Game Over, you lose\nThe word was {word}")
             game_status = False
 
+
 if __name__ == "__main__":
     main()
