@@ -1,5 +1,5 @@
 """
-Project Number Seven - Caeser Cipher
+Project Number Eight - Caeser Cipher
 Make a selection whether you would like to encrypt or decrypt.
 Select the amount of shift positions you would like.
 Enter your message the encryption/decryption will take place.
