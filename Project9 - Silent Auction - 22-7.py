@@ -2,6 +2,7 @@
 Project Number Nine - The Silent Auction
 Gets a name and a bid from each user, then returns the highest key:value pair
 """
+import os
 
 
 def introduction():
@@ -49,6 +50,7 @@ def main():
         calculate(users)
         more = input("Are there any other bidders? Type 'Y' or 'N'")
         if more.lower() == 'y':
+            os.system('cls' if os.name == 'nt' else 'clear')
             continue
         elif more.lower() == 'n':
             break
