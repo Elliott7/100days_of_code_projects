@@ -1,0 +1,146 @@
+"""
+Project Number 16 - OOP Coffee Machine
+This is the same exercise as yesterday however this time the coffee machine is encompassed within classes
+rather than completed through a procedural programming approach.
+"""
+
+
+class CoffeeMaker:
+    """Models the machine that makes the coffee"""
+    def __init__(self):
+        self.resources = {
+            "water": 300,
+            "milk": 200,
+            "coffee": 100,
+        }
+
+    def report(self):
+        """Prints a report of all resources."""
+        print(f"Water: {self.resources['water']}ml")
+        print(f"Milk: {self.resources['milk']}ml")
+        print(f"Coffee: {self.resources['coffee']}g")
+
+    def is_resource_sufficient(self, drink):
+        """Returns True when order can be made, False if ingredients are insufficient."""
+        can_make = True
+        for item in drink.ingredients:
+            if drink.ingredients[item] > self.resources[item]:
+                print(f"Sorry there is not enough {item}.")
+                can_make = False
+        return can_make
+
+    def make_coffee(self, order):
+        """Deducts the required ingredients from the resources."""
+        for item in order.ingredients:
+            self.resources[item] -= order.ingredients[item]
+        print(f"Here is your {order.name} ☕️. Enjoy!")
+
+
+class MenuItem:
+    """Models each Menu Item."""
+    def __init__(self, name, water, milk, coffee, cost):
+        self.name = name
+        self.cost = cost
+        self.ingredients = {
+            "water": water,
+            "milk": milk,
+            "coffee": coffee
+        }
+
+
+class Menu:
+    """Models the Menu with drinks."""
+    def __init__(self):
+        self.menu = [
+            MenuItem(name="latte", water=200, milk=150, coffee=24, cost=2.5),
+            MenuItem(name="espresso", water=50, milk=0, coffee=18, cost=1.5),
+            MenuItem(name="cappuccino", water=250, milk=50, coffee=24, cost=3),
+        ]
+
+    def get_items(self):
+        """Returns all the names of the available menu items"""
+        options = ""
+        for item in self.menu:
+            options += f"{item.name}/"
+        return options
+
+    def find_drink(self, order_name):
+        """Searches the menu for a particular drink by name. Returns that item if it exists, otherwise returns None"""
+        for item in self.menu:
+            if item.name == order_name:
+                return item
+        print("Sorry that item is not available.")
+
+
+class MoneyMachine:
+
+    CURRENCY = "$"
+
+    COIN_VALUES = {
+        "quarters": 0.25,
+        "dimes": 0.10,
+        "nickles": 0.05,
+        "pennies": 0.01
+    }
+
+    def __init__(self):
+        self.profit = 0
+        self.money_received = 0
+
+    def report(self):
+        """Prints the current profit"""
+        print(f"Money: {self.CURRENCY}{self.profit}")
+
+    def process_coins(self):
+        """Returns the total calculated from coins inserted."""
+        print("Please insert coins.")
+        for coin in self.COIN_VALUES:
+            while True:
+                try:
+                    self.money_received += int(input(f"How many {coin}?: "))\
+                                           * self.COIN_VALUES[coin]
+                    break
+                except ValueError:
+                    print("Please enter a valid number")
+        return self.money_received
+
+    def make_payment(self, cost):
+        """Returns True when payment is accepted, or False if insufficient."""
+        self.process_coins()
+        if self.money_received >= cost:
+            change = round(self.money_received - cost, 2)
+            print(f"Here is {self.CURRENCY}{change} in change.")
+            self.profit += cost
+            self.money_received = 0
+            return True
+        else:
+            print("Sorry that's not enough money. Money refunded.")
+            self.money_received = 0
+            return False
+
+
+def main():
+    coffee_machine = CoffeeMaker()
+    menu = Menu()
+    money = MoneyMachine()
+    while True:
+        order = input(f"What would you like? {menu.get_items()}\n")
+        if order.lower() == "report":
+            coffee_machine.report()
+            money.report()
+            continue
+        order_details = menu.find_drink(order)
+        if not order_details:
+            continue
+
+        if not coffee_machine.is_resource_sufficient(order_details):
+            continue
+
+        if not money.make_payment(order_details.cost):
+            continue
+
+        coffee_machine.make_coffee(order_details)
+
+
+if __name__ == "__main__":
+    main()

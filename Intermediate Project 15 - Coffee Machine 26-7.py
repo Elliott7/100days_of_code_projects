@@ -104,7 +104,7 @@ def return_money(total_paid, coffee_choice):
 
     coffee_cost = MENU[coffee_choice]['cost']
     refund = total_paid - coffee_cost
-    print(f"Here is ${refund:.2f} change.\nHere is your {coffee_choice}")
+    print(f"Here is ${refund:.2f} change.\nHere is your {coffee_choice} ☕")
 
 
 def deduct_resources(coffee_choice, resource_log):
