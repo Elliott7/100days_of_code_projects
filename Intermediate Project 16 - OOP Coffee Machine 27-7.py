@@ -120,26 +120,31 @@ class MoneyMachine:
 
 
 def main():
-    coffee_machine = CoffeeMaker()
+    coffee_maker = CoffeeMaker()
     menu = Menu()
-    money = MoneyMachine()
+    money_machine = MoneyMachine()
     while True:
         order = input(f"What would you like? {menu.get_items()}\n")
+
+        if order == "off":
+            break
+
         if order.lower() == "report":
-            coffee_machine.report()
-            money.report()
+            coffee_maker.report()
+            money_machine.report()
             continue
+
         order_details = menu.find_drink(order)
         if not order_details:
             continue
 
-        if not coffee_machine.is_resource_sufficient(order_details):
+        if not coffee_maker.is_resource_sufficient(order_details):
             continue
 
-        if not money.make_payment(order_details.cost):
+        if not money_machine.make_payment(order_details.cost):
             continue
 
-        coffee_machine.make_coffee(order_details)
+        coffee_maker.make_coffee(order_details)
 
 
 if __name__ == "__main__":
