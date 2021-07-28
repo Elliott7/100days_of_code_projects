@@ -1,6 +1,6 @@
 """
-Project Number 17 - Question Quiz
-This point of this project was to create a quiz using classes
+Project Number Seventeen - Question Quiz
+The point of this project was to create a quiz using classes
 """
 
 question_data = [

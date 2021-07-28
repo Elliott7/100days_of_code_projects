@@ -1,5 +1,5 @@
 """
-Project Number 16 - OOP Coffee Machine
+Project Number Sixteen - OOP Coffee Machine
 This is the same exercise as yesterday however this time the coffee machine is encompassed within classes
 rather than completed through a procedural programming approach.
 """
