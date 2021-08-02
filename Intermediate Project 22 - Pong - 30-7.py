@@ -7,7 +7,7 @@ from turtle import Turtle, Screen
 import random
 import time
 
-TIME_DELAY = 0.03
+time_delay = 0.03
 
 
 class Ball(Turtle):
@@ -86,7 +86,7 @@ class Ball(Turtle):
 
     def rebound_delay(self):
         for _ in range(2):
-            time.sleep(TIME_DELAY)
+            time.sleep(time_delay)
             self.forward(10)
 
     def left_change(self):
@@ -262,7 +262,7 @@ def main():
             player_one.deflect_ball(ball)
             player_two.deflect_ball(ball)
             screen.update()
-            time.sleep(TIME_DELAY)
+            time.sleep(time_delay)
 
     screen.onkey(game_on, 'space')
     screen.exitonclick()
