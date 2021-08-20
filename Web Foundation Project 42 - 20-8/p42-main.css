@@ -1,0 +1,52 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.myGrid {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid:
+        "header header header" auto
+	"leftSidebar body rightSidebar" 1fr
+	"footer footer footer" auto
+        / auto 1fr auto;
+    grid-gap: 16px;
+}
+.header {
+    grid-area: header;
+    background-color: aliceblue;
+}
+.leftSidebar {
+    grid-area: leftSidebar;
+}
+.body {
+    grid-area: body;
+}
+.rightSidebar {
+    grid-area: rightSidebar;
+}
+.footer {
+    grid-area: footer;
+}
+.myGrid > div {
+    background: gray;
+}
+
+.view-height {
+    height: 10vh;
+}
+
+.view-width {
+    width: 10vw;
+}
+
+.padd-10 {
+    padding: 10px;
+}
+
+.padd-5 {
+    padding: 5px
+}
